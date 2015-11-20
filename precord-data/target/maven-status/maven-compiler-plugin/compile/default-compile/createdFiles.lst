@@ -1,0 +1,14 @@
+tg\adn\precord\data\service\impl\ServiceModel.class
+tg\adn\precord\data\entite\ParametreConfigString.class
+tg\adn\precord\data\dao\impl\DAO.class
+tg\adn\precord\data\entite\ParametreConfigFloat.class
+tg\adn\precord\data\entite\EntiteModel.class
+tg\adn\precord\data\utils\IdGenerator.class
+tg\adn\precord\data\entite\ParametreConfigLong.class
+tg\adn\precord\data\service\IService.class
+tg\adn\precord\data\entite\ParametreConfigBool.class
+tg\adn\precord\data\api\IParametreAPI.class
+tg\adn\precord\data\entite\ParametreConfig.class
+tg\adn\precord\data\dao\IDAO.class
+tg\adn\precord\data\utils\SpringContextHolder.class
+tg\adn\precord\data\utils\EnumUserType.class

@@ -1,0 +1,11 @@
+tg\adn\precord\log\service\IActionsLogService.class
+tg\adn\precord\log\service\impl\ActionsLogService.class
+tg\adn\precord\log\entite\Evenement.class
+tg\adn\precord\log\service\impl\EvenementService.class
+tg\adn\precord\log\entite\ActionsLog.class
+tg\adn\precord\log\service\IEvenementService.class
+tg\adn\precord\log\dao\impl\ActionsLogDAO.class
+tg\adn\precord\log\dao\IActionsLogDAO.class
+tg\adn\precord\log\dao\impl\EvenementDAO.class
+tg\adn\precord\log\dao\IEvenementDAO.class
+tg\adn\precord\log\utils\TypeEvenementEnum.class

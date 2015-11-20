@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    
+    
+    <!-- packetages à parcourir pour trouver les classes des données -->
+    <context:component-scan base-package="tg.adn.precord.*.dao.impl" />
+    <context:component-scan base-package="tg.adn.precord.*.service.impl" />
+    <context:component-scan base-package="tg.adn.precord.*.spi" /> 
+    
+    <!-- chargement du fichier de configuration de l'accès à la base -->
+    <context:property-override location="file:/${DBPATH}/dbconfig.properties" 
+                               ignore-unresolvable="true" 
+                               ignore-resource-not-found="false" />
+    
+    <!-- Initialisation du contexte de l'application -->
+    <bean id="applicationContextHolder"
+          class="tg.adn.precord.data.utils.SpringContextHolder"/>
+    
+    <!-- Initialisation de la source de données -->
+    <bean id="dataSource" 
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- Initialisation du gestionnaire de transaction -->
+    <bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"  ref="dataSource" />    
+    </bean>
+
+    <!-- Initialisation du gestionnaire des entités -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        
+        <property name="dataSource" ref="dataSource" />
+        
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                
+                <property name="showSql" value="false" />
+                
+                <property name="databasePlatform"
+                          value="org.hibernate.dialect.Oracle10gDialect" />
+                
+                <property name="generateDdl" value="true" />
+                
+            </bean>
+        </property>
+        
+        <property name="loadTimeWeaver">
+            <bean
+                class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+        </property>
+        
+        <property name="persistenceUnitName" value="precordUnit"></property>
+        
+    </bean> 
+</beans>
