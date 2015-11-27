@@ -7,7 +7,11 @@ package tg.adn.precord.essentials.entite;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -23,6 +27,7 @@ import tg.adn.precord.essentials.utils.SexeEnum;
 public class Personne extends EntiteModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "NOM", nullable = false)
     private String nom;
@@ -36,6 +41,7 @@ public class Personne extends EntiteModel {
     @Column(name = "PERS_SEXE", nullable = false)
     private SexeEnum sexe;
     @Column(name = "PERS_ADRESSE", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
     private Adresse adresse;
 
     @Override
