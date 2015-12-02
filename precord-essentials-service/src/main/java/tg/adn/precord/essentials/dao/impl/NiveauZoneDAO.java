@@ -6,12 +6,19 @@
 package tg.adn.precord.essentials.dao.impl;
 
 import org.springframework.stereotype.Repository;
+import tg.adn.precord.data.dao.impl.DAO;
+import tg.adn.precord.essentials.dao.INiveauZoneDAO;
+import tg.adn.precord.essentials.entite.NiveauZone;
 
 /**
  *
  * @author cagecfi
  */
 @Repository("niveauZoneDAO")
-public class NiveauZoneDAO {
+public class NiveauZoneDAO extends DAO<NiveauZone, Integer> implements INiveauZoneDAO {
+
+    public NiveauZoneDAO() {
+        super(NiveauZone.class);
+    }
 
 }

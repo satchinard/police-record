@@ -6,12 +6,19 @@
 package tg.adn.precord.essentials.dao.impl;
 
 import org.springframework.stereotype.Repository;
+import tg.adn.precord.data.dao.impl.DAO;
+import tg.adn.precord.essentials.dao.IPeineDAO;
+import tg.adn.precord.essentials.entite.Peine;
 
 /**
  *
  * @author cagecfi
  */
 @Repository("peineDAO")
-public class PeineDAO {
+public class PeineDAO extends DAO<Peine, Integer> implements IPeineDAO {
+
+    public PeineDAO() {
+        super(Peine.class);
+    }
 
 }

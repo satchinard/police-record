@@ -6,14 +6,19 @@
 package tg.adn.precord.essentials.dao.impl;
 
 import org.springframework.stereotype.Repository;
+import tg.adn.precord.data.dao.impl.DAO;
+import tg.adn.precord.essentials.dao.IDureeDAO;
+import tg.adn.precord.essentials.entite.Duree;
 
 /**
  *
  * @author cagecfi
  */
 @Repository("dureeDAO")
-public class DureeDAO /*
- * extends DAO<DureeService, Integer> implements IDureeDAO
- */ {
+public class DureeDAO extends DAO<Duree, Integer> implements IDureeDAO {
+
+    public DureeDAO() {
+        super(Duree.class);
+    }
 
 }

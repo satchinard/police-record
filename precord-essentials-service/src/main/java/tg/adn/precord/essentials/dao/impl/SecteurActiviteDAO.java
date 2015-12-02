@@ -6,12 +6,19 @@
 package tg.adn.precord.essentials.dao.impl;
 
 import org.springframework.stereotype.Repository;
+import tg.adn.precord.data.dao.impl.DAO;
+import tg.adn.precord.essentials.dao.ISecteurActiviteDAO;
+import tg.adn.precord.essentials.entite.SecteurActivite;
 
 /**
  *
  * @author cagecfi
  */
 @Repository("secteurActiviteDAO")
-public class SecteurActiviteDAO {
+public class SecteurActiviteDAO extends DAO<SecteurActivite, Integer> implements ISecteurActiviteDAO {
+
+    public SecteurActiviteDAO() {
+        super(SecteurActivite.class);
+    }
 
 }

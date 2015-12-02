@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import tg.adn.precord.data.entite.EntiteModel;
+import tg.adn.precord.essentials.entite.Adresse;
 import tg.adn.precord.essentials.entite.Fonction;
 import tg.adn.precord.essentials.entite.Personne;
 
@@ -25,13 +25,13 @@ import tg.adn.precord.essentials.entite.Personne;
  */
 @Entity
 @Table(name = "DEMANDE_SOCIETE")
-public class DemandeSociete extends EntiteModel {
+public class DemandeSociete extends Demande {
 
     @Id
     private Integer id;
     @Column(name = "DMD_PERSONNE", nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
-    private Personne personne;
+    private Personne dirigeantSociete;
     @Column(name = "DMD_FONCTION", nullable = false)
     @ManyToOne
     private Fonction fonction;
@@ -39,6 +39,8 @@ public class DemandeSociete extends EntiteModel {
     private String nomOrganisme;
     @Column(name = "DMD_OBJET_SOCIAL", nullable = false)
     private String objetSocial;
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = false)
+    private Adresse adresse;
     @Column(name = "DMD_NATURE_EMPLOI", nullable = false)
     private String natureEmploi;
     @Column(name = "DMD_DATE")
@@ -51,11 +53,11 @@ public class DemandeSociete extends EntiteModel {
     public DemandeSociete() {
     }
 
-    public DemandeSociete(Integer id, Personne personne, Fonction fonction,
+    public DemandeSociete(Integer id, Personne dirigeantSociete, Fonction fonction,
             String nomOrganisme, String objetSocial, String natureEmploi,
             Date dateTraitement) {
         this.id = id;
-        this.personne = personne;
+        this.dirigeantSociete = dirigeantSociete;
         this.fonction = fonction;
         this.nomOrganisme = nomOrganisme;
         this.objetSocial = objetSocial;
@@ -71,12 +73,12 @@ public class DemandeSociete extends EntiteModel {
         this.id = id;
     }
 
-    public Personne getPersonne() {
-        return personne;
+    public void setDirigeantSociete(Personne dirigeantSociete) {
+        this.dirigeantSociete = dirigeantSociete;
     }
 
-    public void setPersonne(Personne personne) {
-        this.personne = personne;
+    public Personne getDirigeantSociete() {
+        return dirigeantSociete;
     }
 
     public Fonction getFonction() {

@@ -6,12 +6,18 @@
 package tg.adn.precord.essentials.dao.impl;
 
 import org.springframework.stereotype.Repository;
+import tg.adn.precord.data.dao.impl.DAO;
+import tg.adn.precord.essentials.entite.PieceIdentite;
 
 /**
  *
  * @author cagecfi
  */
 @Repository("pieceIdentiteDAO")
-public class PieceIdentiteDAO {
+public class PieceIdentiteDAO extends DAO<PieceIdentite, Integer> {
+
+    public PieceIdentiteDAO() {
+        super(PieceIdentite.class);
+    }
 
 }
