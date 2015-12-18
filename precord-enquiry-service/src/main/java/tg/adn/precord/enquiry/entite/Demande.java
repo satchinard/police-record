@@ -7,6 +7,8 @@ package tg.adn.precord.enquiry.entite;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 import tg.adn.precord.data.entite.EntiteModel;
@@ -39,6 +41,9 @@ public class Demande extends EntiteModel {
                 @Parameter(name = "reCreateStringMthd", value = "reCreateString")})
     @Column(name = "PERS_SEXE", nullable = false)
     private StatutMatrimonialEnum statutMatrimonial;
+    private int nombreCopies;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTraitement;
 
     public Personne getPersonne() {
         return personne;
@@ -128,10 +133,28 @@ public class Demande extends EntiteModel {
         this.statutMatrimonial = statutMatrimonial;
     }
 
+    public int getNombreCopies() {
+        return nombreCopies;
+    }
+
+    public void setNombreCopies(int nombreCopies) {
+        this.nombreCopies = nombreCopies;
+    }
+
+    public Date getDateTraitement() {
+        return dateTraitement;
+    }
+
+    public void setDateTraitement(Date dateTraitement) {
+        this.dateTraitement = dateTraitement;
+    }
+
     @Override
     public String toString() {
         return "Demande{" + "personne=" + personne + ", nomUsuel=" + nomUsuel
                 + ", dateNaissance=" + dateNaissance
+                + ", dateTraitement=" + dateTraitement
+                + ", nombreCopies=" + nombreCopies
                 + ", lieuNaissance=" + lieuNaissance + ", pays=" + pays
                 + ", nomPere=" + nomPere + ", prenomsPere=" + prenomsPere
                 + ", nomMere=" + nomMere + ", prenomsMere=" + prenomsMere

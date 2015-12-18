@@ -8,12 +8,38 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean name="precordApp" class="tg.adn.precord.core.web.PrecordApp"></bean>
-    
+
     <!-- packetages à parcourir pour trouver les classes des données -->
     <context:component-scan base-package="tg.adn.precord.*.dao.impl" />
     <context:component-scan base-package="tg.adn.precord.*.service.impl" />
     <context:component-scan base-package="tg.adn.precord.*.spi" />
 
+    <!-- paramètres propres à hibernate  -->
+    <bean name="hibernateProperties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>file:/${PRECORD}/hibernate.properties</value>
+            </list>
+        </property>
+    </bean>
+
     <!-- chargement du fichier de configuration de l'accès à la base -->
+    <context:property-override location="file:/${PRECORD}/configurations.properties"/>
+    <!--context:property-placeholder system-properties-mode="OVERRIDE"
+    ignore-resource-not-found="true" location="file:/${PRECORD}/configurations.properties"/-->
+
+    <!-- configuration de la source de données -->
+    <bean name="dataSource">
+        <property name="driverClassName" value="{db.driver}"/>
+        <property name="url" value="{db.url}"/>
+        <property name="username" value="{db.user}"/>
+        <property name="password" value="{db.pwd}"/>
+    </bean>
+
+    <bean id="sessionFactory"
+              class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"    >
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
 </beans>
